@@ -26,35 +26,44 @@ class MainActivity2 : AppCompatActivity() {
 
         btnsuma.setOnClickListener{
             val intent : Intent =Intent()
-            val num1: Double=  ETA.text.toString().toDouble()
-            val num2: Double= ETB.text.toString().toDouble()
-            var respuesta=0.0
+            try {
+                val num1: Double = ETA.text.toString().toDouble()
+                val num2: Double = ETB.text.toString().toDouble()
+                var respuesta=0.0
 
-            if (valor3.equals("+"))
+                if (valor3.equals("+"))
+                {
+                    respuesta = num1 + num2
+                }
+
+                if (valor3.equals("-"))
+                {
+                    respuesta = num1 - num2
+                }
+
+                if (valor3.equals("*"))
+                {
+                    respuesta = num1 * num2
+                }
+
+                if (valor3.equals("/"))
+                {
+                    respuesta = num1 / num2
+                }
+
+                intent.putExtra("resultado1",respuesta.toString())
+                setResult(RESULT_OK,intent)
+                finish()
+            }
+            catch (E: Exception)
             {
-                respuesta = num1 + num2
+                Toast.makeText(this,"Datos Invalidos",Toast.LENGTH_SHORT).show()
             }
 
-            if (valor3.equals("-"))
-            {
-                respuesta = num1 - num2
-            }
-
-            if (valor3.equals("*"))
-            {
-                respuesta = num1 * num2
-            }
-
-            if (valor3.equals("/"))
-            {
-                respuesta = num1 / num2
-            }
 
 
 
-            intent.putExtra("resultado1",respuesta.toString())
-            setResult(RESULT_OK,intent)
-            finish()
+
 
         }
 
